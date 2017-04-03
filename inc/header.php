@@ -13,6 +13,7 @@
 <head>
 	<title><?php echo $headTitle; ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="An archive of all tweets written by <?php echo s(rtrim($author['realname'], ".")); ?>." />
 	<meta name="author" content="<?php echo s($author['realname']); ?>" />
 	<link rel="stylesheet" href="<?php echo s($styleFile); ?>" type="text/css" />
@@ -28,11 +29,13 @@
 			</div>
 			<div id="info">
 				<p>The below is an off-site archive of <strong><a href="<?php echo $path; ?>/">all tweets posted by @<?php echo s($config['twitter_screenname']); ?></a></strong> ever</p>
-<?php if($config['follow_me_button']){ ?>				<p class="follow"><a href="//twitter.com/<?php echo s($config['twitter_screenname']); ?>">Follow me on Twitter</a></p><?php echo "\n"; } ?>
+<?php if($config['follow_me_button']){ ?>				<a href="//twitter.com/<?php echo s($config['twitter_screenname']); ?>" class="follow">Follow me on Twitter</a><?php echo "\n"; } ?>
 			</div>
 		</div>
 		<div id="content">
-			<h1><?php echo $pageHeader ? p(s($pageHeader, ENT_NOQUOTES), 3, true) : p(s($pageTitle, ENT_NOQUOTES), 3, true); ?></h1>
-			<form id="search" action="<?php echo $path; ?>/search" method="get"><div><input type="text" name="q" value="<?php if($searchQuery){ echo s($searchQuery); } ?>" /></div></form>
+			<div class="content-header">
+			    <h1 class="content-title"><?php echo $pageHeader ? p(s($pageHeader, ENT_NOQUOTES), 3, true) : p(s($pageTitle, ENT_NOQUOTES), 3, true); ?></h1>
+			    <form id="search" action="<?php echo $path; ?>/search" method="get"><input type="text" name="q" value="<?php if($searchQuery){ echo s($searchQuery); } ?>" /></form>
+			</div>
 <?php if($preBody){ echo "\t\t\t" . $preBody . "\n"; } ?>
 			<div id="c"><div id="primary">

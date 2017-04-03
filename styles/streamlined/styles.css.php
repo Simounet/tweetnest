@@ -28,6 +28,11 @@ body {
 	font-size: 117%;
 }
 
+#c {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 strong { font-weight: bold;   }
 em     { font-style:  italic; }
 
@@ -48,9 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #content {
-	position: relative;
-	margin: 30px 46px;
-	overflow: hidden;
+	margin: 15px 7%;
 }
 
 #top #author {
@@ -96,12 +99,15 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: <?php echo css("top_image_border_color"); ?>;
 }
 
-#top #info {
-	position: relative;
+#info {
+    display: flex;
+    padding: 10px 46px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
 	font-size: 85%;
 	background-color: <?php echo css("top_bar_background_color"); ?>;
 	color: <?php echo css("top_bar_text_color"); ?>;
-	overflow: hidden;
 }
 
 #top #info a, #top #info strong {
@@ -109,7 +115,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #top #info p {
-	margin: 10px 46px;
+    margin: 0;
+    flex-grow: 1;
 }
 
 #top #info strong a {
@@ -120,16 +127,9 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: underline;
 }
 
-#top #info p.follow {
-	position: absolute;
-	top: 5px;
-	right: 46px;
-	text-align: right;
-	margin: 0;
-}
-
-#top #info p.follow a {
+#top #info .follow {
 	display: block;
+        margin-left: 20px;
 	background-color: <?php echo css("top_follow_background_color"); ?>;
 	color: <?php echo css("top_follow_text_color"); ?>;
 	font-weight: bold;
@@ -142,23 +142,36 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 5px 12px;
 }
 
-#top #info p.follow a:hover {
+.follow:hover {
 	background-color: <?php echo css("top_follow_background_color_hover"); ?>;
 }
 
+.content-header {
+    display: flex;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #primary {
-	width: 74%;
-	float: left;
-	position: relative;
+    position: relative;
+    flex: 7;
+}
+
+#primary,
+#sorter {
+    padding-right: 2%;
 }
 
 #secondary {
-	margin-left: 76%;
+    width: 25%;
+    flex-grow: 1;
 	font-size: 85%;
 }
 
-#primary h1, #content h1 {
-	margin-top: 0;
+.content-title {
+	margin: 0;
 }
 
 .tweet {
@@ -233,13 +246,6 @@ p.meta a:hover {
 	border-color: <?php echo css("tweet_image_border_color_hover"); ?>;
 }<?php echo "\n"; } ?>
 
-#search {
-	position: absolute;
-	top: .5em;
-	right: 0;
-	text-align: right;
-}
-
 #search input {
 	border: 1px solid <?php echo css("search_border_color"); ?>;
 	background: <?php echo css("search_background_color"); ?> url(search.png) no-repeat 7px 5px;
@@ -259,6 +265,7 @@ p.meta a:hover {
 
 #sorter {
 	position: absolute;
+        margin: 0 0 20px;
 	top: -45px;
 	right: 0;
 	text-align: right;
@@ -337,13 +344,14 @@ p.meta a:hover {
 }
 
 ul#months, #months ul {
+        margin: 0;
 	padding: 0;
 	list-style-type: none;
 	border-top: 1px solid <?php echo css("months_border_color"); ?>;
 }
 
 #months li a {
-	display: block;
+	display: flex;
 	position: relative;
 	border-bottom: 1px solid <?php echo css("months_border_color"); ?>;
 	margin: 0;
@@ -363,10 +371,9 @@ ul#months, #months ul {
 }
 
 #months li a .n {
-	position: absolute;
-	right: 10px;
+        flex-grow: 1;
 	color: <?php echo css("months_number_color"); ?>;
-	z-index: 2;
+        text-align: right;
 }
 
 #months li a .n strong {
@@ -420,7 +427,6 @@ ul#months, #months ul {
 #months li.selected a {
 	background-color: <?php echo css("months_selected_background_color"); ?>;
 	border-bottom-width: 0;
-	padding-bottom: 6px;
 	color: <?php echo css("months_selected_text_color"); ?>;
 }
 
@@ -436,7 +442,7 @@ ul#months, #months ul {
 	color: <?php echo css("months_selected_number_color"); ?>;
 }
 
-#months li.selected {
+#months .selected {
 	margin-left: -8px;
 	padding-left: 8px;
 	background: <?php echo css("months_selected_graph_color"); ?> url(pointmask.png) no-repeat left center;
@@ -481,6 +487,7 @@ ul#months, #months ul {
 	vertical-align: bottom;
 	text-align: center;
 	position: relative;
+    min-width: 20px;
 }
 
 #days .d a {
@@ -560,6 +567,63 @@ ul#months, #months ul {
 #footer a:hover {
 	color: <?php echo css("footer_link_color"); ?>;
 	text-decoration: underline;
+}
+
+@media(max-width: 650px) {
+    .content-header {
+        padding-top: 0;
+    }
+
+    .content-header,
+    #c {
+        flex-direction: column;
+    }
+
+    .content-title {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #primary {
+        padding: 0;
+    }
+
+    #secondary {
+        width: 100%;
+    }
+
+    #months li a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    #months .selected {
+        padding-left: 14px;
+    }
+
+    #top #info .follow {
+        margin-top: 10px;
+        margin-left: 0;
+        padding: 13px 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    #days {
+        display: block;
+        overflow-y: scroll;
+    }
+}
+
+@media(max-width: 970px) {
+    #sorter {
+        position: initial;
+        padding: 0;
+    }
+
+    #sorter a {
+        padding: 10px 40px;
+    }
 }
 <?php
 	if($returnCSS){

@@ -57,7 +57,7 @@
 			'page_title_color' => '#000',
 			'link_color_hover' => '#003c70',
 			// Top
-			'top_background_image_position' => '0 -80px', // x, y
+			'top_background_image_position' => '0 -50px', // x, y
 			'top_text_color' => '#567',
 			'top_screenname_color' => '#456',
 			'top_realname_color' => '#234',
